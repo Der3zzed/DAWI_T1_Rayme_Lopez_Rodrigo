@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "DAWI T1 - Rodrigo Rayme Lopez",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

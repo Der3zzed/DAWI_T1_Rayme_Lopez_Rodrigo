@@ -1,0 +1,17 @@
+meta {
+  name: 03 Buscar por ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/empleados/{{empleadoId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Estado HTTP 200", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

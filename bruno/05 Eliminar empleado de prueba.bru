@@ -1,0 +1,20 @@
+meta {
+  name: 05 Eliminar empleado de prueba
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/empleados/{{empleadoTemporalId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Estado HTTP 204", function () {
+    expect(res.getStatus()).to.equal(204);
+  });
+  test("Sin cuerpo", function () {
+    expect(res.getBody() === "" || res.getBody() == null).to.equal(true);
+  });
+}

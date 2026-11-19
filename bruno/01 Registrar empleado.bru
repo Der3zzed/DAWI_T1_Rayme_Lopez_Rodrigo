@@ -1,0 +1,36 @@
+meta {
+  name: 01 Registrar empleado
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/empleados
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "juan@example.com",
+    "especialidad": "Backend"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    bru.setEnvVar("empleadoId", String(res.getBody().id), { persist: true });
+  }
+}
+
+tests {
+  test("Estado HTTP 201", function () {
+    expect(res.getStatus()).to.equal(201);
+  });
+}

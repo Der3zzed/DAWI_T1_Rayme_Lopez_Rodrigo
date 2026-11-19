@@ -1,0 +1,30 @@
+meta {
+  name: 04 Actualizar empleado
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/empleados/{{empleadoId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "juan@example.com",
+    "especialidad": "Frontend"
+  }
+}
+
+tests {
+  test("Estado HTTP 200", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

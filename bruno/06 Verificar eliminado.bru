@@ -1,0 +1,17 @@
+meta {
+  name: 06 Verificar eliminado
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/empleados/{{empleadoTemporalId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Estado HTTP 404", function () {
+    expect(res.getStatus()).to.equal(404);
+  });
+}

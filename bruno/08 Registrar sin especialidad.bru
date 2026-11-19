@@ -1,0 +1,35 @@
+meta {
+  name: 08 Registrar sin especialidad
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/empleados
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Ana",
+    "apellido": "Lopez",
+    "email": "ana@example.com"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    bru.setEnvVar("empleadoTemporalId", String(res.getBody().id), { persist: true });
+  }
+}
+
+tests {
+  test("Estado HTTP 201", function () {
+    expect(res.getStatus()).to.equal(201);
+  });
+}

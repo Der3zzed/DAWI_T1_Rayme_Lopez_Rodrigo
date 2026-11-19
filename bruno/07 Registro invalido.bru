@@ -1,0 +1,29 @@
+meta {
+  name: 07 Registro invalido
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/empleados
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "",
+    "apellido": "Perez",
+    "email": "incorrecto"
+  }
+}
+
+tests {
+  test("Estado HTTP 400", function () {
+    expect(res.getStatus()).to.equal(400);
+  });
+}
